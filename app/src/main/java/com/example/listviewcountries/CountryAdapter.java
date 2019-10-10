@@ -1,6 +1,7 @@
 package com.example.listviewcountries;
 
 
+import android.content.ClipData;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,19 +26,37 @@ public class CountryAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        convertView= LayoutInflater.from(this.getContext()).inflate(R.layout.listitem_country,null);
+        ViewHolder holder;
+        if(convertView==null) {
+            convertView = LayoutInflater.from(this.getContext()).inflate(
+                    R.layout.listitem_country, null);
+            holder=new ViewHolder();
+            holder.ivFlag= (ImageView) convertView.findViewById(R.id.ivFlag);
+            holder.tvCountry=  convertView.findViewById(R.id.tvCountry);
+            holder.tvCaptial= convertView.findViewById(R.id.tvCapital);
+            holder.tvPopulation=convertView.findViewById(R.id.tvPopulation);
+
+            convertView.setTag(holder);
+        }else{
+            holder= (ViewHolder) convertView.getTag();
+        }
+
         Country country=countries[position];
-        TextView tvCountry= (TextView) convertView.findViewById(R.id.tvCountry);
-        tvCountry.setText(country.getCountryName());
-        TextView tvCapital= (TextView) convertView.findViewById(R.id.tvCapital);
-        tvCapital.setText(country.getCountryCapital());
-        TextView tvPopulation= (TextView) convertView.findViewById(R.id.tvPopulation);
-        tvPopulation.setText(""+country.getCountryPopulation());
-        ImageView ivFlag= (ImageView) convertView.findViewById(R.id.ivFlag);
+        holder.tvCountry.setText(country.getCountryName());
+        holder.tvCaptial.setText(country.getCountryCapital());
+        holder.tvPopulation.setText(""+country.getCountryPopulation());
         int id = this.getContext().getResources().getIdentifier("_"+country.getCountryCode().toLowerCase(),
-                "drawable", ivFlag.getContext().getPackageName());
-        ivFlag.setImageResource(id);
+                "drawable", holder.ivFlag.getContext().getPackageName());
+        holder.ivFlag.setImageResource(id);
         return convertView;
+
+    }
+
+    public static class ViewHolder{
+        TextView tvCountry;
+        TextView tvCaptial;
+        TextView tvPopulation;
+        ImageView ivFlag;
 
     }
 }
