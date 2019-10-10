@@ -10,13 +10,6 @@
         android:layout_height="153dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvPopulation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
-
         <ImageView
             android:id="@+id/ivFlag"
             android:layout_width="130dp"
@@ -25,23 +18,35 @@
 
         <LinearLayout
             android:id="@+id/llVertical"
-            android:layout_width="281dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvCountry"
                 android:layout_width="279dp"
-                android:layout_height="43dp"
+                android:layout_height="74dp"
+                android:padding="20dp"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/tvCapital"
-                android:layout_width="279dp"
-                android:layout_height="98dp"
+                android:layout_width="match_parent"
+                android:layout_height="81dp"
+                android:padding="20dp"
                 android:text="TextView" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvPopulation"
+            android:layout_width="159dp"
+            android:layout_height="79dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:text="TextView" />
     </LinearLayout>
 
 </LinearLayout>
